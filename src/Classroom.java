@@ -42,8 +42,25 @@ public class Classroom
         int totalExams = 0;
         for(int i = 0; i < classRoster.length; i++)
         {
-            Student student = classRoster[i];
-            
+            if(classRoster[i] != null)
+            {
+                Student student = classRoster[i];
+                int[] examScores = student.getExamScores();
+                for (int score : examScores)
+                {
+                    totalScore += score;
+                    totalExams++;
+                }
+            }
+        }
+        if(totalExams == 0)
+        {
+            return 0.0;
+        }
+        else
+        {
+            double average = (double) totalScore / totalExams;
+            return average;
         }
     }
 
@@ -54,6 +71,12 @@ public class Classroom
      */
     public void printRoster()
     {
-        /* implement me! */
+        for(Student student : classRoster)
+        {
+            if(student != null)
+            {
+                System.out.println(student.getLast() + ", " + student.getFirst());
+            }
+        }
     }
 }
